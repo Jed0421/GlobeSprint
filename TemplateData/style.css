@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "PressStart2P";
+  src: url("PressStart2P-Regular.ttf") format("truetype");
+  font-display: block;
+}
+html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #06010e; }
+#unity-canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; background: #06010e; outline: none; }
+
+#gs-loader { position: fixed; inset: 0; z-index: 10; overflow: hidden; background: #06010e; font-family: "PressStart2P", monospace; color: #fff; user-select: none; }
+#gs-loader.gone { display: none; }
+#gs-px { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; }
+#gs-scan { position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 2px, rgba(0,0,0,0.22) 3px, rgba(0,0,0,0.22) 4px); }
+#gs-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%); }
+.gs-text { position: absolute; white-space: nowrap; line-height: 1; }
+#gs-title { left: 0; right: 0; text-align: center; color: #fff;
+  text-shadow: 0.06em 0 0 #ff2fd0, -0.06em 0 0 #ff2fd0, 0 0.06em 0 #ff2fd0, 0 -0.06em 0 #ff2fd0,
+               0.12em 0.14em 0 #3a0b52, 0 0 0.5em rgba(255,47,208,0.65); letter-spacing: 0.04em; }
+#gs-status { text-align: left; color: #9be8ff; text-shadow: 0.15em 0.15em 0 #1b0632; }
+#gs-pct { text-align: right; color: #ffd23f; text-shadow: 0.15em 0.15em 0 #1b0632; }
+#gs-tip { left: 0; right: 0; text-align: center; color: #c9a6ff; text-shadow: 0.15em 0.15em 0 #1b0632; }
+#gs-error { left: 6%; right: 6%; top: 40%; text-align: center; white-space: normal; line-height: 1.6; color: #ff6b8a; display: none; }
+
+/* small HUD over the running game: back to the website + fullscreen */
+#gs-hud { position: fixed; top: 10px; left: 10px; z-index: 5; display: flex; gap: 8px; transition: opacity 0.4s; }
+#gs-hud[hidden] { display: none; }
+#gs-hud.idle { opacity: 0.18; }
+#gs-hud a, #gs-hud button { font: 10px/1 "PressStart2P", monospace; color: #f6ecff; text-decoration: none; cursor: pointer;
+  background: rgba(27, 6, 50, 0.82); border: 2px solid #ff2fd0; padding: 8px 10px; box-shadow: 3px 3px 0 #3a0b52; }
+#gs-hud a:hover, #gs-hud button:hover { border-color: #3ff2ff; color: #3ff2ff; }
+#gs-hud a:focus-visible, #gs-hud button:focus-visible { outline: 2px solid #ffd23f; outline-offset: 2px; }

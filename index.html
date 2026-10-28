@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <title>Globe Sprint</title>
+    <link rel="icon" type="image/png" href="TemplateData/favicon.png">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+
+    <div id="gs-loader">
+      <canvas id="gs-px"></canvas>
+      <div id="gs-vignette"></div>
+      <div id="gs-scan"></div>
+      <div id="gs-title" class="gs-text">GLOBE SPRINT</div>
+      <div id="gs-status" class="gs-text">DOWNLOADING THE WORLD...</div>
+      <div id="gs-pct" class="gs-text">0%</div>
+      <div id="gs-tip" class="gs-text"></div>
+      <div id="gs-error" class="gs-text"></div>
+    </div>
+
+    <div id="gs-hud" hidden>
+      <a id="gs-home" href="../">Home</a>
+      <button id="gs-full" type="button">Fullscreen</button>
+    </div>
+
+    <script src="TemplateData/gs-art.js"></script>
+    <script src="TemplateData/gs-loader.js"></script>
+    <script src="TemplateData/gs-page.js"></script>
+    <script src="Build/GlobeSprintWeb.loader.js"></script>
+    <script>
+      var canvas = document.querySelector("#unity-canvas");
+      var config = {
+        arguments: [],
+        dataUrl: "Build/GlobeSprintWeb.data",
+        frameworkUrl: "Build/GlobeSprintWeb.framework.js",
+        codeUrl: "Build/GlobeSprintWeb.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Globe Sprint",
+        productVersion: "0.1.0",
+        showBanner: function (msg, type) { if (type === "error") GSPage.error(msg); else console.log(msg); }
+      };
+      createUnityInstance(canvas, config, function (progress) {
+        GSPage.progress(progress);
+      }).then(function (unityInstance) {
+        window.unityInstance = unityInstance;
+        GSPage.done();
+        GSPage.hud(unityInstance);
+        canvas.focus();
+      }).catch(function (message) {
+        GSPage.error(String(message));
+      });
+    </script>
+  </body>
+</html>
